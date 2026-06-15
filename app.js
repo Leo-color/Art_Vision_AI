@@ -628,12 +628,12 @@ function showDetail(field, title) {
 
 // ===== CODE VISIBILITY TOGGLE =====
 function toggleCodeVisibility() {
-    const codeDisplay = document.getElementById('codeDisplay');
+    const accountCodeDisplay = document.getElementById('accountCodeDisplay');
 
-    if (codeDisplay.textContent === '••••••••') {
-        codeDisplay.textContent = state.accessCode;
+    if (accountCodeDisplay.textContent === '••••••••') {
+        accountCodeDisplay.textContent = state.accessCode;
     } else {
-        codeDisplay.textContent = '••••••••';
+        accountCodeDisplay.textContent = '••••••••';
     }
 }
 

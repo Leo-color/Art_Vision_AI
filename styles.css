@@ -962,7 +962,7 @@ body::before {
 }
 
 .logout-btn {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
     border: none;
     color: white;
     padding: 14px 20px;
@@ -976,9 +976,9 @@ body::before {
 }
 
 .logout-btn:hover {
-    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
 }
 
 .logout-btn:active {
