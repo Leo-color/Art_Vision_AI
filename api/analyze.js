@@ -1,32 +1,23 @@
-import express from 'express';
-import cors from 'cors';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-
-// Initialize Gemini
 const genai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Middleware
-app.use(cors());
-app.use(express.json({ limit: '50mb', extended: true }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    return res.status(200).end();
+  }
 
-// Serve static files from frontend directory
-app.use(express.static(path.join(__dirname, '../frontend')));
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Server is running' });
-});
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-// Main endpoint: Analyze painting
-app.post('/analyze', async (req, res) => {
   const { image } = req.body;
 
   if (!image) {
@@ -39,31 +30,11 @@ app.post('/analyze', async (req, res) => {
   }
 
   try {
-    const result = await analyzePainting(imageBase64);
-
-    if (result.success) {
-      return res.json(result);
-    } else {
-      return res.status(400).json(result);
-    }
-  } catch (error) {
-    console.error('Server error:', error);
-    return res.status(500).json({
-      success: false,
-      error: 'Internal server error',
-      details: error.message
-    });
-  }
-});
-
-// Analyze painting with Gemini API
-async function analyzePainting(imageBase64) {
-  try {
     if (!process.env.GEMINI_API_KEY) {
-      return {
+      return res.status(400).json({
         success: false,
         error: 'GEMINI_API_KEY not configured'
-      };
+      });
     }
 
     const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
@@ -96,29 +67,23 @@ async function analyzePainting(imageBase64) {
 
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      return {
+      return res.status(400).json({
         success: false,
         error: 'Invalid response format from AI'
-      };
+      });
     }
 
     const analysisData = JSON.parse(jsonMatch[0]);
 
-    return {
+    return res.status(200).json({
       success: true,
       data: analysisData
-    };
+    });
   } catch (error) {
-    return {
+    console.error('Server error:', error);
+    return res.status(500).json({
       success: false,
       error: `Analysis failed: ${error.message}`
-    };
+    });
   }
 }
-
-// Fallback to serve frontend index.html for SPA routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
-
-export default app;
