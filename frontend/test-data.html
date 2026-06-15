@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Data Injector</title>
+</head>
+<body>
+    <h1>Iniecting test data...</h1>
+    <script>
+        const testData = [{
+            id: Date.now(),
+            timestamp: '14/06/2026, 10:30:45',
+            imageThumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%238b5cf6" width="100" height="100"/%3E%3Ctext fill="white" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="24"%3E%F0%9F%8E%A8%3C/text%3E%3C/svg%3E',
+            analysisResults: {
+                title: 'La Notte Stellata',
+                artist: 'Vincent van Gogh',
+                year: '1889',
+                style: 'Post-Impressionism'
+            },
+            success: true
+        }];
+        localStorage.setItem('scanHistory', JSON.stringify(testData));
+        window.location = 'http://localhost:3000';
+    </script>
+</body>
+</html>

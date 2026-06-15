@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtVision AI - Artemis Style</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- LOGIN SCREEN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-icon">🎨</div>
+                <h1>ArtVision AI</h1>
+                <p>Enter Access Code</p>
+            </div>
+
+            <div class="login-code-display" id="codeDisplay">
+                <div class="code-dots">
+                    <span class="code-dot" data-index="0"></span>
+                    <span class="code-dot" data-index="1"></span>
+                    <span class="code-dot" data-index="2"></span>
+                    <span class="code-dot" data-index="3"></span>
+                    <span class="code-dot" data-index="4"></span>
+                    <span class="code-dot" data-index="5"></span>
+                    <span class="code-dot" data-index="6"></span>
+                    <span class="code-dot" data-index="7"></span>
+                </div>
+            </div>
+
+            <div class="login-keypad">
+                <button class="keypad-btn" data-num="1">1</button>
+                <button class="keypad-btn" data-num="2">2</button>
+                <button class="keypad-btn" data-num="3">3</button>
+                <button class="keypad-btn" data-num="4">4</button>
+                <button class="keypad-btn" data-num="5">5</button>
+                <button class="keypad-btn" data-num="6">6</button>
+                <button class="keypad-btn" data-num="7">7</button>
+                <button class="keypad-btn" data-num="8">8</button>
+                <button class="keypad-btn" data-num="9">9</button>
+                <button class="keypad-btn" data-num="0">0</button>
+                <button class="keypad-btn delete-btn" id="deleteBtn">⌫</button>
+                <button class="keypad-btn submit-btn" id="submitBtn">✓</button>
+            </div>
+
+            <div class="login-error" id="loginError" style="display: none;">
+                Invalid Code - Try Again
+            </div>
+        </div>
+    </div>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <button class="menu-icon">☰</button>
+        </div>
+        <div class="top-bar-title">ArtVision AI</div>
+        <div class="top-bar-right">
+            <div class="profile-circle"></div>
+        </div>
+    </div>
+
+    <!-- MAIN SCREEN -->
+    <div class="main-screen">
+        <!-- PAINTING FRAME -->
+        <div class="painting-frame" id="paintingFrame">
+            <img id="paintingImage" class="painting-image" src="https://images.unsplash.com/photo-1561214115-6d2f1b0abb80?w=500&h=500&fit=crop" alt="">
+            <video id="cameraPreview" class="camera-video" style="display: none;"></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div class="scan-prompt" id="scanPrompt">📸 Scansiona l'opera d'arte</div>
+
+            <!-- AI ANALYSIS ACTIVE LABEL -->
+            <div class="ai-label" id="aiLabel" style="display: none;">AI ANALYSIS ACTIVE</div>
+
+            <!-- DETECTED MOVEMENT BOX -->
+            <div class="detected-box" id="detectedBox" style="display: none;">
+                <div class="detected-icon">✨</div>
+                <div class="detected-info">
+                    <div class="detected-label">DETECTED MOVEMENT</div>
+                    <div class="detected-value" id="detectedValue">Post-Impressionism</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTER BUTTON -->
+        <button class="center-button" id="centerBtn">
+            <span class="button-inner">SCAN</span>
+        </button>
+
+        <!-- GALLERY STRIP -->
+        <div class="gallery-strip" id="galleryStrip">
+            <button class="gallery-item" data-image="https://images.unsplash.com/photo-1561214115-6d2f1b0abb80?w=500&h=500&fit=crop">
+                <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0abb80?w=100&h=100&fit=crop" alt="Painting 1">
+            </button>
+            <button class="gallery-item active" data-image="https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=500&h=500&fit=crop">
+                <img src="https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=100&h=100&fit=crop" alt="Painting 2">
+                <span class="gallery-label">1x</span>
+            </button>
+            <button class="gallery-item" data-image="https://images.unsplash.com/photo-1578926078328-123456789?w=500&h=500&fit=crop">
+                <img src="https://images.unsplash.com/photo-1578926078328-123456789?w=100&h=100&fit=crop" alt="Painting 3">
+            </button>
+        </div>
+
+        <!-- LOADING SPINNER -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- RESULTS OVERLAY -->
+        <div class="results-overlay" id="resultsOverlay" style="display: none;">
+            <div class="results-scroll" id="resultsScroll"></div>
+            <button class="close-results" id="closeResults">✕</button>
+        </div>
+
+        <!-- DETAIL MODAL -->
+        <div class="detail-modal" id="detailModal" style="display: none;">
+            <div class="detail-modal-content">
+                <button class="detail-close" id="detailClose">✕</button>
+                <h3 id="detailTitle"></h3>
+                <p id="detailText"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HISTORY SCREEN -->
+    <div class="history-screen" id="historyScreen" style="display: none;">
+        <div class="screen-header">
+            <h2>📜 Cronologia Scansioni</h2>
+        </div>
+        <div class="history-content" id="historyContent">
+            <p class="empty-state">Nessuna scansione ancora</p>
+        </div>
+    </div>
+
+    <!-- ACCOUNT SCREEN -->
+    <div class="account-screen" id="accountScreen" style="display: none;">
+        <div class="screen-header">
+            <h2>👤 Account</h2>
+        </div>
+        <div class="account-content">
+            <div class="account-card code-card-with-logout">
+                <div>
+                    <p class="account-label">Accesso Codice</p>
+                    <div class="code-display-wrapper">
+                        <p class="account-value code-display" id="codeDisplay" style="cursor: pointer;">••••••••</p>
+                        <button class="code-eye-toggle" id="codeEyeToggle" onclick="toggleCodeVisibility()">⊙</button>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+            </div>
+            <div class="account-card session-card">
+                <p class="account-value" id="sessionTime">00:00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+        <button class="nav-btn active" id="homeBtn" data-screen="main">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-btn" id="historyBtn" data-screen="history">
+            <span class="nav-icon">📜</span>
+            <span class="nav-label">Cronologia</span>
+        </button>
+        <button class="nav-btn" id="accountBtn" data-screen="account">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Account</span>
+        </button>
+    </div>
+
+    <script src="paintings.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

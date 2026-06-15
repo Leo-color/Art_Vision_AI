@@ -1,0 +1,127 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    GIT & GITHUB SETUP - QUICK GUIDE                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+COSA SERVE:
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Git installato (scarica da git-scm.com)
+✅ Account GitHub (gratis su github.com)
+✅ Codice pronto (sulla cartella "Sito esame")
+
+
+STEP 1: INSTALLA GIT (Se Non L'Hai)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Vai a: https://git-scm.com/download/win
+2. Scarica e installa (premi sempre "Next")
+3. Riavvia il PC
+4. Verifica: Apri PowerShell e digita: git --version
+   Output: git version X.XX.X ✓
+
+
+STEP 2: CONFIGURA GIT
+═══════════════════════════════════════════════════════════════════════════════
+
+Apri PowerShell e esegui:
+
+git config --global user.name "Il Tuo Nome"
+git config --global user.email "tua.email@gmail.com"
+
+Esempio:
+git config --global user.name "Lisa"
+git config --global user.email "truffaelisa@gmail.com"
+
+
+STEP 3: CREA REPO LOCALE
+═══════════════════════════════════════════════════════════════════════════════
+
+Apri PowerShell nella cartella del progetto:
+
+cd "C:\Users\Utente\Desktop\Sito esame"
+
+Poi esegui:
+
+git init
+git add .
+git commit -m "Initial commit: ArtVision - AI Painting Analyzer"
+
+
+STEP 4: CREA REPO SU GITHUB
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Vai a: https://github.com/new
+2. Repository name: artvision
+3. Description: AI Painting Analyzer with Gemini API
+4. Scegli: PUBLIC
+5. Clicca: "Create repository"
+6. Copia il link (es: https://github.com/USERNAME/artvision.git)
+
+
+STEP 5: CONNETTI GITHUB AL TUO REPO LOCALE
+═══════════════════════════════════════════════════════════════════════════════
+
+In PowerShell, esegui:
+
+git remote add origin https://github.com/USERNAME/artvision.git
+git branch -M main
+git push -u origin main
+
+Sostituisci "USERNAME" con il tuo username GitHub!
+
+
+STEP 6: VERIFICA
+═══════════════════════════════════════════════════════════════════════════════
+
+Vai a: https://github.com/USERNAME/artvision
+Dovresti vedere i tuoi file online! ✓
+
+
+STEP 7: DEPLOY SU VERCEL
+═══════════════════════════════════════════════════════════════════════════════
+
+Vedi: DEPLOY_VERCEL.md (nella stessa cartella)
+
+
+COMANDI UTILI PER FUTURI AGGIORNAMENTI:
+═══════════════════════════════════════════════════════════════════════════════
+
+Dopo aver cambiato file e vuoi aggiornare:
+
+git add .
+git commit -m "Descrizione del cambio"
+git push
+
+Vercel deploya automaticamente! 🚀
+
+
+TROUBLESHOOTING:
+═══════════════════════════════════════════════════════════════════════════════
+
+ERRORE: "fatal: not a git repository"
+→ Soluzione: Sei nella cartella giusta? Esegui: cd "C:\Users\Utente\Desktop\Sito esame"
+
+ERRORE: "Permission denied (publickey)"
+→ Soluzione: Hai già una SSH key? Prova: git push -u origin main
+
+ERRORE: "fatal: 'origin' does not appear to be a 'git' repository"
+→ Soluzione: Hai copiato il link GitHub correttamente?
+
+
+CHEAT SHEET:
+═══════════════════════════════════════════════════════════════════════════════
+
+git init                          → Inizializza repo
+git add .                         → Aggiungi tutti i file
+git commit -m "messaggio"        → Crea commit
+git remote add origin <URL>      → Connetti a GitHub
+git push -u origin main          → Carica su GitHub
+git push                          → Aggiorna (dopo il primo push)
+git status                        → Vedi stato
+git log                           → Vedi cronologia commit
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                    PRONTO! Segui i 7 step e sei online! 🚀
+═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,193 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    🎨 ANALIZZATORE DI DIPINTI - START HERE                   ║
+║                           AI-POWERED PAINTING ANALYSIS                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+COSA È STATO CREATO?
+═══════════════════════════════════════════════════════════════════════════════
+
+Una web app mobile che fotografa dipinti e li analizza con AI (Claude).
+Ottiene: nome, artista, significato, ubicazione, materiali, ecc.
+
+ARCHITETTURA:
+──────────────────────────────────────────────────────────────────────────────
+
+  Frontend (HTML/CSS/JS)  →  Backend (Node.js)  →  AI (Claude API)
+
+  📱 Fotocamera          📡 API Express        🤖 Analisi Vision
+  🖼️ Visualizzazione      📊 Gestione richieste   🎨 Riconoscimento arte
+
+
+AVVIARE IN 3 STEP:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. OTTIENI API KEY (gratuita!)
+   └─ https://console.anthropic.com/account/keys
+   └─ Clicca "Create Key" e copia la chiave (sk-ant-...)
+
+2. CONFIGURA .env
+   └─ Apri file ".env"
+   └─ Sostituisci: ANTHROPIC_API_KEY=sk-ant-your-key-here
+
+3. AVVIA BACKEND
+   └─ Terminal: cd backend && npm install && npm start
+   └─ Apri: http://localhost:3000 nel browser
+   └─ Scatta foto → Analizza → Vedi risultati!
+
+
+FILE IMPORTANTI:
+═══════════════════════════════════════════════════════════════════════════════
+
+LEGGI QUESTI PRIMA:
+  📖 QUICKSTART.md           ← LEGGI PER PRIMO! (3 minuti)
+  📖 SETUP_COMPLETO.md       ← Setup e istruzioni dettagliate
+
+DOCUMENTAZIONE:
+  📚 README.md               ← Documentazione completa
+  📚 AI_MODEL.md             ← Info su modelli AI e costi
+
+WORKFLOW:
+  📋 workflows/analyze_painting.md ← Procedure tecniche
+
+CODICE:
+  🐍 tools/analyze_painting.py     ← Script Python AI
+  🚀 backend/server.js             ← Server Node.js
+  🎨 frontend/index.html           ← Interfaccia web
+
+
+STRUTTURA PROGETTO:
+═══════════════════════════════════════════════════════════════════════════════
+
+Sito esame/
+├── 📄 .env                      ← Credenziali (DA COMPILARE!)
+├── 📄 START_HERE.txt            ← Questo file
+├── 📄 QUICKSTART.md             ← Leggi per primo!
+├── 📄 SETUP_COMPLETO.md         ← Setup completo
+├── 📄 README.md                 ← Documentazione
+├── 📄 AI_MODEL.md               ← Info modelli AI
+├── 📄 requirements.txt          ← Dipendenze Python
+│
+├── 📁 workflows/
+│   └── analyze_painting.md      ← Procedure documentate
+│
+├── 📁 tools/
+│   └── analyze_painting.py      ← Analisi con Claude AI
+│
+├── 📁 backend/
+│   ├── server.js                ← Server Express
+│   └── package.json             ← Dipendenze Node
+│
+└── 📁 frontend/
+    ├── index.html               ← HTML (fotocamera + UI)
+    ├── styles.css               ← CSS mobile-responsive
+    └── app.js                   ← JavaScript app logic
+
+
+STEP-BY-STEP RAPIDO:
+═══════════════════════════════════════════════════════════════════════════════
+
+[1] LEGGI QUICKSTART.md
+    → cat QUICKSTART.md
+
+[2] OTTIENI API KEY GRATIS
+    → https://console.anthropic.com/account/keys
+
+[3] CONFIGURA .env
+    → Apri .env e sostituisci ANTHROPIC_API_KEY=sk-ant-...
+
+[4] INSTALLA DIPENDENZE
+    → cd backend && npm install && cd ..
+    → pip install -r requirements.txt
+
+[5] AVVIA BACKEND
+    → cd backend && npm start
+    → Output: "🎨 Painting Analyzer server running on http://localhost:3000"
+
+[6] APRI BROWSER
+    → http://localhost:3000
+
+[7] TESTA L'APP
+    → Clicca "📷 Accendi Fotocamera"
+    → Fotografa un dipinto
+    → Clicca "🤖 Analizza"
+    → Vedi i risultati!
+
+
+COSTI:
+═══════════════════════════════════════════════════════════════════════════════
+
+Claude API è MOLTO economica:
+  • Primi 100$ nel primo mese: GRATUITI
+  • Dopo: ~$0.01-0.05 per analisi
+  • Visualizza: https://console.anthropic.com/account/usage
+
+Non preoccuparti dei costi per i test!
+
+
+TROUBLESHOOTING VELOCE:
+═══════════════════════════════════════════════════════════════════════════════
+
+ERRORE: "Module not found: express"
+  └─ Soluzione: cd backend && npm install
+
+ERRORE: "No module named anthropic"
+  └─ Soluzione: pip install anthropic
+
+ERRORE: "ANTHROPIC_API_KEY not found"
+  └─ Soluzione: Controlla .env (deve avere la chiave reale)
+
+ERRORE: "Port 3000 already in use"
+  └─ Soluzione: Cambia PORT in .env in un'altra porta (es: 3001)
+
+ERRORE: "Camera permission denied"
+  └─ Soluzione: Consenti l'accesso alla camera nel browser
+
+
+MODELLO AI:
+═══════════════════════════════════════════════════════════════════════════════
+
+Modello attuale: Claude Opus 4.7 (migliore per arte)
+  • Riconoscimento dipinti: TOP
+  • Analisi stilistica: Profonda
+  • Velocità: Lenta (ma accuratissima)
+
+Per info su altri modelli, vedi: AI_MODEL.md
+
+
+DEPLOYMENT (QUANDO PRONTO):
+═══════════════════════════════════════════════════════════════════════════════
+
+Vercel (CONSIGLIATO - Gratuito):
+  └─ npm i -g vercel
+  └─ vercel
+  └─ L'app funziona da qualsiasi telefono!
+
+Heroku:
+  └─ heroku create
+  └─ git push heroku main
+
+
+PROSSIMI PASSI:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Leggi: QUICKSTART.md (3 minuti)
+2. Ottieni API key gratis
+3. Configura .env
+4. Avvia: npm start nel backend/
+5. Vai a: http://localhost:3000
+6. Scatta foto e divertiti! 🎨
+
+
+DOMANDE?
+═══════════════════════════════════════════════════════════════════════════════
+
+  📖 Leggi la documentazione (README.md)
+  🔍 Controlla i commenti nel codice
+  💬 Contatta: truffaelisa@gmail.com
+
+Powered by Claude AI 🤖
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                   PRONTO A PARTIRE? LEGGI QUICKSTART.md!
+═══════════════════════════════════════════════════════════════════════════════

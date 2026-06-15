@@ -1,0 +1,123 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║           ✨ APP DIPINTI - 100% GRATUITA CON GOOGLE GEMINI ✨              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+🎉 NIENTE COSTI - TUTTO GRATUITO!
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Google Gemini API: GRATIS per sempre
+✅ 60 richieste al minuto: ABBASTANZA per tutti
+✅ Niente carta di credito: NON SERVE
+✅ Niente pagamenti: ZERO COSTI
+
+
+STEP-BY-STEP SEMPLICE (3 MINUTI):
+═══════════════════════════════════════════════════════════════════════════════
+
+[1] OTTIENI API KEY GRATIS
+    └─ Vai: https://aistudio.google.com/apikey
+    └─ Clicca: "Create API Key"
+    └─ Copia: la chiave (tipo AIzaSyD_...)
+
+[2] CONFIGURA .env
+    └─ Apri file: .env (nella cartella principale)
+    └─ Sostituisci:
+       GEMINI_API_KEY=AIzaSyD_your-key-here
+    └─ Salva il file
+
+[3] INSTALLA LIBRERIE PYTHON
+    └─ Apri PowerShell/Terminale
+    └─ Esegui:
+       pip install google-generativeai python-dotenv
+
+[4] AVVIA BACKEND
+    └─ In PowerShell:
+       cd "C:\Users\Utente\Desktop\Sito esame\backend"
+       npm install
+       npm start
+    └─ Attendi: "🎨 Painting Analyzer server running on http://localhost:3000"
+
+[5] APRI BROWSER
+    └─ Vai a: http://localhost:3000
+    └─ Clicca: "📷 Accendi Fotocamera"
+    └─ Fotografa dipinto
+    └─ Clicca: "🤖 Analizza"
+    └─ Vedi risultati! ✨
+
+
+COSA CAMBIA DA CLAUDE A GEMINI?
+═══════════════════════════════════════════════════════════════════════════════
+
+PRIMA (Claude):
+  • $0.01-0.05 per analisi
+  • Necessitava pagamenti
+  • Buono ma costoso
+
+ORA (Google Gemini):
+  • COMPLETAMENTE GRATUITO! 🎉
+  • Zero costi
+  • Altrettanto buono
+  • 60 analisi al minuto gratis
+
+
+FILE AGGIORNATI:
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ .env                 ← LEGGI QUESTO (sostituisci API key)
+✅ tools/analyze_painting.py  ← Aggiornato a Gemini
+✅ requirements.txt     ← Aggiornato (google-generativeai)
+✅ GEMINI_GRATIS.md     ← Info su Gemini
+✅ QUICKSTART.md        ← Aggiornato con Gemini
+
+
+VERIFICHE:
+═══════════════════════════════════════════════════════════════════════════════
+
+Prima di avviare, controlla che:
+
+□ Hai la chiave Gemini (AIzaSyD_...)
+□ .env ha: GEMINI_API_KEY=AIzaSyD_your-key
+□ Hai eseguito: pip install google-generativeai
+□ Sei nella cartella backend per: npm install
+
+
+TROUBLESHOOTING:
+═══════════════════════════════════════════════════════════════════════════════
+
+ERRORE: "GEMINI_API_KEY not found"
+  └─ Soluzione: Controlla .env (deve avere la chiave vera)
+
+ERRORE: "No module named google"
+  └─ Soluzione: pip install google-generativeai
+
+ERRORE: "npm not found"
+  └─ Soluzione: Installa Node.js da nodejs.org
+
+ERRORE: "Port 3000 already in use"
+  └─ Soluzione: Cambia PORT in .env (es: 3001)
+
+
+COSTI FINALI:
+═══════════════════════════════════════════════════════════════════════════════
+
+Singola analisi: $0.00
+Mille analisi: $0.00
+Un milione di analisi: $0.00
+Infinito: GRATIS! 🎉
+
+
+PRONTO?
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Vai a: https://aistudio.google.com/apikey
+2. Copia la chiave
+3. Incolla in .env
+4. Esegui: cd backend && npm install && npm start
+5. Apri: http://localhost:3000
+6. Divertiti! 🎨
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        TUTTO GRATUITO - BUON DIVERTIMENTO! 🎉
+═══════════════════════════════════════════════════════════════════════════════
