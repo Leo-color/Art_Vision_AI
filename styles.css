@@ -289,6 +289,7 @@ body::before {
     box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
     position: relative;
+    width: 100%;
 }
 
 
@@ -304,8 +305,10 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
 .scan-prompt {
@@ -1118,6 +1121,120 @@ body::before {
 
     .account-label {
         font-size: 12px;
+    }
+}
+
+/* ===== EXTRA SMALL PHONES ===== */
+@media (max-width: 480px) {
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        height: 100vh;
+    }
+
+    .main-screen {
+        padding: 8px;
+        padding-bottom: 75px;
+        gap: 8px;
+    }
+
+    .painting-frame {
+        height: 300px;
+        margin-bottom: 8px;
+        border-radius: 12px;
+    }
+
+    .center-button {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+        bottom: 90px;
+    }
+
+    .center-button .button-inner {
+        font-size: 18px;
+    }
+
+    .bottom-nav {
+        padding: 8px 0;
+        min-height: 65px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 200;
+    }
+
+    .nav-btn {
+        min-height: 55px;
+        font-size: 9px;
+        padding: 4px 4px;
+        margin: 0 1px;
+        border-radius: 6px;
+    }
+
+    .nav-icon {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+
+    .nav-label {
+        font-size: 8px;
+    }
+
+    .top-bar {
+        padding: 8px 12px;
+    }
+
+    .top-bar-title {
+        font-size: 16px;
+    }
+
+    .scan-prompt {
+        font-size: 12px;
+    }
+
+    .code-display-wrapper {
+        gap: 8px;
+    }
+
+    .code-eye-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .logout-btn {
+        font-size: 12px;
+        padding: 10px 14px;
+        margin-bottom: 12px;
+    }
+
+    .account-card {
+        padding: 12px;
+    }
+
+    .account-value {
+        font-size: 12px;
+    }
+
+    .account-label {
+        font-size: 11px;
+    }
+
+    .painting-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .camera-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
