@@ -385,8 +385,8 @@ function switchScreen(screenName) {
 
     // Hide all screens
     if (mainScreen) mainScreen.style.display = 'none';
-    historyScreen.style.display = 'none';
-    accountScreen.style.display = 'none';
+    if (historyScreen) historyScreen.style.display = 'none';
+    if (accountScreen) accountScreen.style.display = 'none';
 
     // Remove active class from all nav buttons
     navBtns.forEach(btn => btn.classList.remove('active'));
@@ -533,10 +533,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const accountBtn = document.getElementById('accountBtn');
     const logoutBtn = document.getElementById('logoutBtn');
 
-    if (homeBtn) homeBtn.addEventListener('click', () => switchScreen('main'));
-    if (historyBtn) historyBtn.addEventListener('click', () => switchScreen('history'));
-    if (accountBtn) accountBtn.addEventListener('click', () => switchScreen('account'));
-    if (logoutBtn) logoutBtn.addEventListener('click', logout);
+    console.log('Attaching nav listeners:', { homeBtn: !!homeBtn, historyBtn: !!historyBtn, accountBtn: !!accountBtn, logoutBtn: !!logoutBtn });
+
+    if (homeBtn) homeBtn.addEventListener('click', () => { console.log('Home clicked'); switchScreen('main'); });
+    if (historyBtn) historyBtn.addEventListener('click', () => { console.log('History clicked'); switchScreen('history'); });
+    if (accountBtn) accountBtn.addEventListener('click', () => { console.log('Account clicked'); switchScreen('account'); });
+    if (logoutBtn) logoutBtn.addEventListener('click', () => { console.log('Logout clicked'); logout(); });
 })();
 
 // ===== TEXT-TO-SPEECH FUNCTIONS =====
