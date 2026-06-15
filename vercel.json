@@ -1,8 +1,22 @@
 {
   "version": 2,
+  "functions": {
+    "backend/server.js": {
+      "runtime": "@vercel/node@3"
+    }
+  },
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/.*",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/analyze",
+      "dest": "backend/server.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/health",
       "dest": "backend/server.js"
     },
     {
