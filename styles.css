@@ -1053,6 +1053,74 @@ body::before {
     background: transparent;
 }
 
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .main-screen {
+        padding: 12px;
+        padding-bottom: 80px;
+        gap: 12px;
+    }
+
+    .painting-frame {
+        aspect-ratio: auto;
+        height: 350px;
+        margin-bottom: 12px;
+    }
+
+    .center-button {
+        width: 64px;
+        height: 64px;
+        font-size: 28px;
+    }
+
+    .center-button .button-inner {
+        font-size: 20px;
+    }
+
+    .bottom-nav {
+        padding: 10px 0;
+        min-height: 70px;
+    }
+
+    .nav-btn {
+        min-height: 60px;
+        font-size: 10px;
+        padding: 6px 8px;
+        margin: 0 2px;
+    }
+
+    .nav-icon {
+        font-size: 24px;
+    }
+
+    .scan-prompt {
+        font-size: 14px;
+    }
+
+    .code-eye-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .logout-btn {
+        font-size: 13px;
+        padding: 12px 16px;
+    }
+
+    .account-card {
+        padding: 14px;
+    }
+
+    .account-value {
+        font-size: 13px;
+    }
+
+    .account-label {
+        font-size: 12px;
+    }
+}
+
 ::-webkit-scrollbar-thumb {
     background: rgba(96, 165, 250, 0.3);
     border-radius: 3px;
