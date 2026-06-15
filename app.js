@@ -90,8 +90,6 @@ function initPaintingsGallery() {
 // Initialize on load
 document.addEventListener('DOMContentLoaded', function() {
     initPaintingsGallery();
-    // Auto-login for testing
-    loginScreen.classList.add('hidden');
 });
 
 // ===== LOGIN FUNCTIONS =====
