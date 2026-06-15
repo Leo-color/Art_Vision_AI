@@ -526,6 +526,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Attach nav button listeners immediately (in case DOMContentLoaded already fired)
+(function() {
+    const homeBtn = document.getElementById('homeBtn');
+    const historyBtn = document.getElementById('historyBtn');
+    const accountBtn = document.getElementById('accountBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (homeBtn) homeBtn.addEventListener('click', () => switchScreen('main'));
+    if (historyBtn) historyBtn.addEventListener('click', () => switchScreen('history'));
+    if (accountBtn) accountBtn.addEventListener('click', () => switchScreen('account'));
+    if (logoutBtn) logoutBtn.addEventListener('click', logout);
+})();
+
 // ===== TEXT-TO-SPEECH FUNCTIONS =====
 function speakText(text, onStart, onEnd) {
     if (!('speechSynthesis' in window)) {
