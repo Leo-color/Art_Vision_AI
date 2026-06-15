@@ -129,52 +129,43 @@ function showLoginError() {
 
 // ===== APP FUNCTIONS =====
 function handleCenterButton() {
-    if (state.cameraActive) {
-        takePicture();
-    } else if (state.imageData) {
+    if (state.imageData) {
         analyzeImage();
     } else {
-        startCamera();
+        openNativeCamera();
     }
 }
 
-async function startCamera() {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
-            audio: false
-        });
-
-        cameraPreview.srcObject = stream;
-        cameraPreview.style.display = 'block';
-        paintingImage.style.display = 'none';
-        document.getElementById('scanPrompt').style.display = 'none';
-        state.cameraActive = true;
-    } catch (error) {
-        alert('Camera error: ' + error.message);
+function openNativeCamera() {
+    const fileInput = document.getElementById('cameraInput');
+    if (!fileInput) {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.id = 'cameraInput';
+        input.accept = 'image/*';
+        input.capture = 'environment';
+        input.style.display = 'none';
+        input.addEventListener('change', handleCameraCapture);
+        document.body.appendChild(input);
+        input.click();
+    } else {
+        fileInput.click();
     }
 }
 
-function takePicture() {
-    const ctx = canvas.getContext('2d');
-    canvas.width = cameraPreview.videoWidth;
-    canvas.height = cameraPreview.videoHeight;
-
-    ctx.translate(canvas.width, 0);
-    ctx.scale(-1, 1);
-    ctx.drawImage(cameraPreview, 0, 0);
-
-    state.imageData = canvas.toDataURL('image/jpeg', 0.8);
-
-    if (cameraPreview.srcObject) {
-        cameraPreview.srcObject.getTracks().forEach(track => track.stop());
+function handleCameraCapture(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            state.imageData = e.target.result;
+            paintingImage.src = state.imageData;
+            paintingImage.style.display = 'block';
+            document.getElementById('scanPrompt').style.display = 'none';
+            analyzeImage();
+        };
+        reader.readAsDataURL(file);
     }
-    state.cameraActive = false;
-
-    paintingImage.src = state.imageData;
-    cameraPreview.style.display = 'none';
-    paintingImage.style.display = 'block';
-    document.getElementById('scanPrompt').style.display = 'none';
 }
 
 function saveScanData(imageData, analysisResults, success = true) {
