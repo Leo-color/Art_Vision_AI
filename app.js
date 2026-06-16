@@ -158,14 +158,48 @@ function handleCameraCapture(event) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            state.imageData = e.target.result;
-            paintingImage.src = state.imageData;
-            paintingImage.style.display = 'block';
-            document.getElementById('scanPrompt').style.display = 'none';
-            analyzeImage();
+            const img = new Image();
+            img.onload = function() {
+                // Compress the image
+                const compressed = compressImage(img);
+                state.imageData = compressed;
+                paintingImage.src = compressed;
+                paintingImage.style.display = 'block';
+                document.getElementById('scanPrompt').style.display = 'none';
+                analyzeImage();
+            };
+            img.src = e.target.result;
         };
         reader.readAsDataURL(file);
     }
+}
+
+function compressImage(img) {
+    const canvas = document.createElement('canvas');
+    let width = img.width;
+    let height = img.height;
+
+    // Max dimension 1024px
+    const maxSize = 1024;
+    if (width > height) {
+        if (width > maxSize) {
+            height = Math.round((height * maxSize) / width);
+            width = maxSize;
+        }
+    } else {
+        if (height > maxSize) {
+            width = Math.round((width * maxSize) / height);
+            height = maxSize;
+        }
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, width, height);
+
+    // Convert to JPEG with 85% quality to reduce size
+    return canvas.toDataURL('image/jpeg', 0.85);
 }
 
 function saveScanData(imageData, analysisResults, success = true) {
