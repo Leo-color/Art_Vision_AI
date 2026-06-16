@@ -40,21 +40,8 @@ export default async function handler(req, res) {
   try {
     const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
-    const prompt = `Analizza questo dipinto in dettaglio e fornisci una risposta in JSON valido (e SOLO JSON, niente altro) con i seguenti campi:
-
-{
-  "title": "Nome del dipinto",
-  "artist": "Nome dell'artista",
-  "year": "Anno/periodo",
-  "style": "Movimento artistico/stile",
-  "meaning": "Significato e interpretazione",
-  "location": "Ubicazione nota",
-  "materials": "Materiali",
-  "color_palette": "Colori dominanti",
-  "description": "Descrizione dettagliata",
-  "interesting_facts": "Curiosità storiche",
-  "narrative": "Racconta il dipinto come UN UNICO E FLUIDO DISCORSO, senza punti o elenchi. Parla come se stessi raccontando una storia interessante a un amico. Inizia con il titolo e l'artista, poi continua con periodo, significato, descrizione e curiosità in modo naturale e affascinante."
-}`;
+    const prompt = `Analizza il dipinto. Rispondi SOLO in JSON:
+{"title":"nome","artist":"artista","year":"anno","style":"stile","meaning":"significato breve","description":"descrizione breve","narrative":"racconta come una storia interessante, 2-3 frasi"}`;
 
     const imagePart = {
       inlineData: {

@@ -179,8 +179,8 @@ function compressImage(img) {
     let width = img.width;
     let height = img.height;
 
-    // Max dimension 1024px
-    const maxSize = 1024;
+    // Max dimension 512px (reduced from 1024 to save tokens)
+    const maxSize = 512;
     if (width > height) {
         if (width > maxSize) {
             height = Math.round((height * maxSize) / width);
@@ -198,8 +198,8 @@ function compressImage(img) {
     const ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, width, height);
 
-    // Convert to JPEG with 85% quality to reduce size
-    return canvas.toDataURL('image/jpeg', 0.85);
+    // Convert to JPEG with 75% quality (reduced from 85% to save more tokens)
+    return canvas.toDataURL('image/jpeg', 0.75);
 }
 
 function saveScanData(imageData, analysisResults, success = true) {
