@@ -40,7 +40,7 @@ export default async function handler(req, res) {
   try {
     const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
-    const prompt = `Dipinto? JSON: {"title":"nome","artist":"autore","year":"anno","style":"stile","narrative":"storia breve 1-2 frasi"}`;
+    const prompt = `{"title":"","artist":"","year":"","narrative":""}`;
 
     const imagePart = {
       inlineData: {
