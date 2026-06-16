@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+    const model = genai.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     const prompt = `Analizza questo dipinto in dettaglio e fornisci una risposta in JSON valido (e SOLO JSON, niente altro) con i seguenti campi:
 
