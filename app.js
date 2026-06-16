@@ -179,8 +179,8 @@ function compressImage(img) {
     let width = img.width;
     let height = img.height;
 
-    // Max dimension 256px (50 free photos target)
-    const maxSize = 256;
+    // Max dimension 512px (AI accuracy priority)
+    const maxSize = 512;
     if (width > height) {
         if (width > maxSize) {
             height = Math.round((height * maxSize) / width);
@@ -198,8 +198,8 @@ function compressImage(img) {
     const ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, width, height);
 
-    // Convert to JPEG with 50% quality (50 free photos)
-    return canvas.toDataURL('image/jpeg', 0.50);
+    // Convert to JPEG with 75% quality (optimal AI recognition)
+    return canvas.toDataURL('image/jpeg', 0.75);
 }
 
 function saveScanData(imageData, analysisResults, success = true) {
