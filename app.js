@@ -252,6 +252,11 @@ async function analyzeImage() {
             body: JSON.stringify({ image: state.imageData })
         });
 
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+            throw new Error(`API Error ${response.status}: ${errorData.error || 'Unknown error'}`);
+        }
+
         const result = await response.json();
 
         if (result.success) {
