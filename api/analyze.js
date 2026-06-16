@@ -18,6 +18,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  if (!process.env.GEMINI_API_KEY) {
+    console.error('GEMINI_API_KEY not configured');
+    return res.status(500).json({
+      success: false,
+      error: 'API key not configured on server'
+    });
+  }
+
   const { image } = req.body;
 
   if (!image) {
@@ -30,13 +38,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    if (!process.env.GEMINI_API_KEY) {
-      return res.status(400).json({
-        success: false,
-        error: 'GEMINI_API_KEY not configured'
-      });
-    }
-
     const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
 
     const prompt = `Analizza questo dipinto in dettaglio e fornisci una risposta in JSON valido (e SOLO JSON, niente altro) con i seguenti campi:
