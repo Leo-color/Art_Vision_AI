@@ -265,12 +265,10 @@ async function analyzeImage() {
             displayResults();
         } else {
             state.analysisResults = null;
-            saveScanData(state.imageData, null, false);
             displayResultsError();
         }
     } catch (error) {
         state.analysisResults = null;
-        saveScanData(state.imageData, null, false);
         displayResultsError();
         console.error('Analysis error:', error);
     }
@@ -282,11 +280,6 @@ function displayResults() {
     const data = state.analysisResults;
     detectedValue.textContent = data.style || 'Analysis Complete';
     detectedBox.style.display = 'flex';
-
-    // Add to history
-    if (data.title && data.artist) {
-        addToHistory(data.title, data.artist);
-    }
 
     // Create header with speak button
     let html = `<div class="results-header">
@@ -451,6 +444,9 @@ function loadHistory() {
         }
     }
 
+    // Mostra solo scansioni riuscite con immagine valida
+    scanHistory = scanHistory.filter(item => item.success && item.imageThumbnail);
+
     const historyContent = document.getElementById('historyContent');
     if (scanHistory.length === 0) {
         historyContent.innerHTML = '<p class="empty-state">Nessuna scansione ancora</p>';
@@ -484,6 +480,9 @@ function loadHistoryItem(index) {
     } catch (e) {
         return;
     }
+
+    // Stesso filtro di loadHistory per allineare gli indici
+    scanHistory = scanHistory.filter(item => item.success && item.imageThumbnail);
 
     const item = scanHistory[index];
     if (!item) return;

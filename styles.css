@@ -347,6 +347,19 @@ body::before {
     justify-content: center;
 }
 
+.scan-disclaimer {
+    position: fixed;
+    bottom: 92px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 150;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
 .center-button:hover {
     transform: translateX(-50%) scale(1.15) translateY(-6px);
     box-shadow: 0 30px 80px rgba(59, 130, 246, 0.5),
