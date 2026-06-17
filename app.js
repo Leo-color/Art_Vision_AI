@@ -294,13 +294,6 @@ function displayResults() {
         <button class="speak-all-btn" onclick="speakAllResults()">🔊 Ascolta</button>
     </div>`;
 
-    // Show narrative as main text (if available)
-    if (data.narrative) {
-        html += `<div class="result-card narrative-card">
-            <div class="narrative-text">${escapeHtml(data.narrative)}</div>
-        </div>`;
-    }
-
     // Add details cards (collapsible style)
     html += `<div class="details-section">`;
 
