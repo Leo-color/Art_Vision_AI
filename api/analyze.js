@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const model = genai.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = genai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const prompt = `Analizza dipinto. Risposta JSON: {"title":"nome","artist":"artista","year":"anno","narrative":"storia breve"}`;
 
