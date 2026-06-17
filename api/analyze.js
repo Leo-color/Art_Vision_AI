@@ -40,7 +40,8 @@ export default async function handler(req, res) {
   try {
     const model = genai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-    const prompt = `Analizza dipinto. Risposta JSON: {"title":"nome","artist":"artista","year":"anno","narrative":"storia breve"}`;
+    const prompt = `Analizza il dipinto. Rispondi SOLO con JSON valido, in italiano, con questi campi:
+{"title":"nome dell'opera","artist":"nome artista","year":"anno o periodo","style":"movimento/stile artistico","meaning":"significato dell'opera (1-2 frasi)","description":"descrizione di cosa si vede (1-2 frasi)","location":"dove si trova oggi","interesting_facts":"una curiosità interessante","narrative":"breve racconto fluido che unisce tutto, 2-3 frasi, per la lettura vocale"}`;
 
     const imagePart = {
       inlineData: {

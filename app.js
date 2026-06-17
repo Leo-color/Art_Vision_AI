@@ -317,6 +317,8 @@ function displayResults() {
     if (data.artist) addDetail('ARTISTA', data.artist, 'artist');
     if (data.year) addDetail('PERIODO', data.year, 'year');
     if (data.style) addDetail('STILE', data.style, 'style');
+    if (data.meaning) addDetail('SIGNIFICATO', data.meaning, 'meaning');
+    if (data.description) addDetail('DESCRIZIONE', data.description, 'description');
     if (data.location) addDetail('UBICAZIONE', data.location, 'location');
     if (data.materials) addDetail('MATERIALI', data.materials, 'materials');
     if (data.color_palette) addDetail('COLORI', data.color_palette, 'color_palette');
