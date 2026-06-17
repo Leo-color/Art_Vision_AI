@@ -309,11 +309,11 @@ function displayResults() {
             html += `<div class="result-card">
                 <div class="result-label">${label}</div>
                 <div class="result-text">${escapeHtml(value)}</div>
-                <div class="discover-more" onclick="showDetail('${fieldKey}', '${label}')">📖 Scopri di più</div>
             </div>`;
         }
     };
 
+    if (data.title) addDetail('TITOLO', data.title, 'title');
     if (data.artist) addDetail('ARTISTA', data.artist, 'artist');
     if (data.year) addDetail('PERIODO', data.year, 'year');
     if (data.style) addDetail('STILE', data.style, 'style');
