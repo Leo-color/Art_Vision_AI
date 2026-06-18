@@ -287,6 +287,13 @@ function displayResults() {
         <button class="speak-all-btn" onclick="speakAllResults()">🔊 Ascolta</button>
     </div>`;
 
+    // Show the photo the user took
+    if (state.imageData) {
+        html += `<div class="result-photo">
+            <img src="${state.imageData}" alt="Opera scansionata">
+        </div>`;
+    }
+
     // Add details cards (collapsible style)
     html += `<div class="details-section">`;
 
@@ -489,6 +496,7 @@ function loadHistoryItem(index) {
 
     if (item.success && item.analysisResults) {
         state.analysisResults = item.analysisResults;
+        state.imageData = item.imageThumbnail;
         displayResults();
     } else {
         displayResultsError();
