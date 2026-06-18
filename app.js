@@ -259,7 +259,7 @@ async function analyzeImage() {
 
         const result = await response.json();
 
-        if (result.success) {
+        if (result.success && result.data && result.data.recognized !== false && result.data.title) {
             state.analysisResults = result.data;
             saveScanData(state.imageData, result.data, true);
             displayResults();

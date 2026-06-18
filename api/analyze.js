@@ -40,8 +40,8 @@ export default async function handler(req, res) {
   try {
     const model = genai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-    const prompt = `Identifica con precisione il dipinto reale. Verifica che autore, anno e ubicazione (museo) siano corretti e accurati; se non sei certo, scrivi il dato più probabile senza inventare. Rispondi SOLO con JSON valido, in italiano:
-{"title":"nome dell'opera","artist":"nome artista","year":"anno o periodo","style":"movimento/stile artistico","meaning":"significato dell'opera (1-2 frasi)","description":"descrizione di cosa si vede (1-2 frasi)","location":"museo/luogo esatto dove si trova oggi","interesting_facts":"una curiosità interessante","narrative":"breve racconto fluido che unisce tutto, 2-3 frasi, per la lettura vocale"}`;
+    const prompt = `Identifica con precisione il dipinto reale. Verifica che autore, anno e ubicazione (museo) siano corretti e accurati; se non sei certo, scrivi il dato più probabile senza inventare. Se l'immagine NON è un'opera d'arte o non riesci a identificarla, rispondi SOLO con {"recognized":false}. Altrimenti rispondi SOLO con JSON valido, in italiano:
+{"recognized":true,"title":"nome dell'opera","artist":"nome artista","year":"anno o periodo","style":"movimento/stile artistico","meaning":"significato dell'opera (1-2 frasi)","description":"descrizione di cosa si vede (1-2 frasi)","location":"museo/luogo esatto dove si trova oggi","interesting_facts":"una curiosità interessante","narrative":"breve racconto fluido che unisce tutto, 2-3 frasi, per la lettura vocale"}`;
 
     const imagePart = {
       inlineData: {

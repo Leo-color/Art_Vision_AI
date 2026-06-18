@@ -75,7 +75,7 @@ body::before {
 .login-container {
     width: 100%;
     max-width: 380px;
-    padding: 40px 30px;
+    padding: 20px 30px;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -83,13 +83,13 @@ body::before {
 }
 
 .login-header {
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 
 .login-icon {
-    font-size: 48px;
+    font-size: 40px;
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     animation: float 3s ease-in-out infinite;
     line-height: 1;
     text-align: center;
@@ -163,7 +163,7 @@ body::before {
 }
 
 .keypad-btn {
-    aspect-ratio: 1;
+    height: 54px;
     border: 1.5px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(12px);
