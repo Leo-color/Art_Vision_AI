@@ -349,9 +349,13 @@ body::before {
     justify-content: center;
 }
 
+.center-button {
+    bottom: 155px;
+}
+
 .scan-disclaimer {
     position: fixed;
-    bottom: 92px;
+    bottom: 125px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 12px;
