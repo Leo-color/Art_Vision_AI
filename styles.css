@@ -44,7 +44,9 @@ body::before {
     background: linear-gradient(135deg, #0f1729 0%, #1a1f3a 50%, #0d2240 100%);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
     z-index: 1000;
     animation: fadeInLogin 0.5s ease;
 }
@@ -77,6 +79,7 @@ body::before {
     text-align: center;
     position: relative;
     z-index: 1;
+    margin: auto;
 }
 
 .login-header {
