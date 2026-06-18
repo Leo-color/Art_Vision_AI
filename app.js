@@ -129,28 +129,25 @@ function showLoginError() {
 
 // ===== APP FUNCTIONS =====
 function handleCenterButton() {
-    if (state.imageData) {
-        analyzeImage();
-    } else {
-        openNativeCamera();
-    }
+    // Ogni scansione apre sempre la fotocamera nativa
+    openNativeCamera();
 }
 
 function openNativeCamera() {
-    const fileInput = document.getElementById('cameraInput');
+    let fileInput = document.getElementById('cameraInput');
     if (!fileInput) {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.id = 'cameraInput';
-        input.accept = 'image/*';
-        input.capture = 'environment';
-        input.style.display = 'none';
-        input.addEventListener('change', handleCameraCapture);
-        document.body.appendChild(input);
-        input.click();
-    } else {
-        fileInput.click();
+        fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.id = 'cameraInput';
+        fileInput.accept = 'image/*';
+        fileInput.capture = 'environment';
+        fileInput.style.display = 'none';
+        fileInput.addEventListener('change', handleCameraCapture);
+        document.body.appendChild(fileInput);
     }
+    // Reset così riapre sempre la fotocamera, anche per la stessa foto
+    fileInput.value = '';
+    fileInput.click();
 }
 
 function handleCameraCapture(event) {
@@ -391,6 +388,13 @@ function displayResultsError() {
 
 function hideResults() {
     resultsOverlay.style.display = 'none';
+    // Reset per la prossima scansione
+    state.imageData = null;
+    state.analysisResults = null;
+    if (aiLabel) aiLabel.style.display = 'none';
+    if (detectedBox) detectedBox.style.display = 'none';
+    const scanPrompt = document.getElementById('scanPrompt');
+    if (scanPrompt) scanPrompt.style.display = 'block';
 }
 
 function escapeHtml(text) {
@@ -460,21 +464,37 @@ function loadHistory() {
         return;
     }
 
+    const trashIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path></svg>`;
+
     historyContent.innerHTML = scanHistory.map((item, index) => `
-        <div class="history-item" onclick="loadHistoryItem(${index})">
-            <div class="history-item-thumbnail">
+        <div class="history-item">
+            <div class="history-item-thumbnail" onclick="loadHistoryItem(${index})">
                 <img src="${item.imageThumbnail}" alt="Scansione">
             </div>
-            <div class="history-item-info">
+            <div class="history-item-info" onclick="loadHistoryItem(${index})">
                 <p class="history-time">${item.timestamp}</p>
                 <p class="history-title">
                     ${item.analysisResults?.title || 'Scansione non riconosciuta'}
                     ${item.analysisResults?.artist ? ' • ' + item.analysisResults.artist : ''}
                 </p>
-                ${item.success ? '' : '<p class="history-status">⚠️ Analisi non riuscita</p>'}
             </div>
+            <button class="history-delete-btn" onclick="deleteHistoryItem(${item.id})" aria-label="Elimina">${trashIcon}</button>
         </div>
     `).join('');
+}
+
+function deleteHistoryItem(id) {
+    const saved = localStorage.getItem('scanHistory');
+    if (!saved) return;
+    let scanHistory = [];
+    try {
+        scanHistory = JSON.parse(saved);
+    } catch (e) {
+        return;
+    }
+    scanHistory = scanHistory.filter(item => item.id !== id);
+    localStorage.setItem('scanHistory', JSON.stringify(scanHistory));
+    loadHistory();
 }
 
 function loadHistoryItem(index) {
