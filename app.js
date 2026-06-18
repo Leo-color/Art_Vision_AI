@@ -25,8 +25,6 @@ const paintingFrame = document.getElementById('paintingFrame');
 const cameraPreview = document.getElementById('cameraPreview');
 const canvas = document.getElementById('canvas');
 const aiLabel = document.getElementById('aiLabel');
-const detectedBox = document.getElementById('detectedBox');
-const detectedValue = document.getElementById('detectedValue');
 const centerBtn = document.getElementById('centerBtn');
 const loadingOverlay = document.getElementById('loadingOverlay');
 const resultsOverlay = document.getElementById('resultsOverlay');
@@ -240,7 +238,6 @@ async function analyzeImage() {
 
     loadingOverlay.style.display = 'flex';
     aiLabel.style.display = 'block';
-    detectedBox.style.display = 'none';
 
     try {
         const response = await fetch('/api/analyze', {
@@ -275,8 +272,6 @@ function displayResults() {
     loadingOverlay.style.display = 'none';
 
     const data = state.analysisResults;
-    detectedValue.textContent = data.style || 'Analysis Complete';
-    detectedBox.style.display = 'flex';
 
     // Create header with speak button
     let html = `<div class="results-header">
@@ -392,7 +387,6 @@ function hideResults() {
     state.imageData = null;
     state.analysisResults = null;
     if (aiLabel) aiLabel.style.display = 'none';
-    if (detectedBox) detectedBox.style.display = 'none';
     const scanPrompt = document.getElementById('scanPrompt');
     if (scanPrompt) scanPrompt.style.display = 'block';
 }
